@@ -1,0 +1,47 @@
+.module-selection-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    /*background-image: url("../assets/module-bg.jpg"); /* Replace with your background image */
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: white;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  
+  .module-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+    gap: 15px;
+    max-width: 500px;
+  }
+  
+  .module-button {
+    background-color: #4CAF50;
+    border: none;
+    padding: 15px 20px;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.2s, background-color 0.3s;
+  }
+  
+  .module-button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+  }
+  

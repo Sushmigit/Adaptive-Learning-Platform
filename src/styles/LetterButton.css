@@ -1,0 +1,30 @@
+.letter-button {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    background-color: #4b8b3b; /* Default green */
+    color: white;
+  }
+  
+  .letter-button:hover {
+    background-color: brown; /* Darker green */
+  }
+  
+  .letter-button.active {
+    background-color: #ffcc00; /* Yellow when clicked */
+    transform: scale(1.2);
+    animation: bounce 0.4s ease-in-out;
+  }
+  
+  @keyframes bounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+  
