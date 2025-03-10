@@ -8,7 +8,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  /*const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
 
@@ -32,7 +32,27 @@ const Login = () => {
     } else {
       setError(data.message);
     }
+  };*/
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError("");
+  
+    const response = await fetch("http://127.0.0.1:5000/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+  
+    const data = await response.json();
+  
+    if (response.ok) {
+      // Navigate to the module selection page with state
+      navigate("/modules", { state: { username: data.username, learner_id: data.learner_id } });
+    } else {
+      setError(data.message);
+    }
   };
+  
 
   return (
     <div className="login-container">

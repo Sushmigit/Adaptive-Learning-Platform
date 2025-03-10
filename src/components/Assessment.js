@@ -42,7 +42,7 @@ const Assessment = () => {
     const accuracy = (correctAnswers / totalQuestions) * 100;
     const errorRate = 100 - accuracy;
     const taskCompletionRate = answeredQuestions / totalQuestions; // Now between 0 and 1
-
+    
     const metricsData = {
       learner_id: learnerId,
       session_id: sessionId,

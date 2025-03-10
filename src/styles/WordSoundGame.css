@@ -1,0 +1,132 @@
+/* Fancy World Theme - Word Sound Game */
+
+.fancy-world-container {
+    /*background-image: url('${process.env.PUBLIC_URL}/images/castle.avif'); /* Fantasy castle background */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    font-family: 'Cinzel Decorative', cursive;
+    position: relative;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    /*background: linear-gradient(180deg, #7a3b8a, #a45ee5); /* Fantasy purple gradient */
+    padding: 20px;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar-heading {
+    font-size: 1.8rem;
+    color: #ffccff;
+    text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.7);
+    margin-bottom: 20px;
+}
+
+.sidebar-list {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+/*.sidebar-item {
+    margin: 15px 0;
+    background: linear-gradient(45deg, #ff66ff, #ff99ff) !important; /* Ensure the gradient applies 
+    border: 2px solid #fff !important;
+    padding: 15px 20px !important;
+    font-size: 1.5rem !important;
+    border-radius: 15px !important;
+    color: white !important;
+    cursor: pointer !important;
+    transition: transform 0.2s ease, box-shadow 0.3s ease !important;
+}*/
+
+.link, .link-button {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #fff;
+    background: transparent;
+    border: none;
+    padding: 10px 15px;
+    width: 100%;
+    text-align: center;
+    display: block;
+    transition: background 0.3s, transform 0.2s;
+    cursor: pointer;
+}
+
+.link-button:hover, .link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+    border-radius: 8px;
+}
+
+/* Game Title */
+.fancy-world-title {
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 3px 3px 5px rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px #ffccff, 0 0 20px #ff99ff;
+    }
+    to {
+        text-shadow: 0 0 15px #ff99ff, 0 0 25px #ff66ff;
+    }
+}
+
+/* Word Grid */
+.word-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    max-width: 700px;
+    margin-top: 20px;
+    padding-left: 270px; /* Push content to the right since sidebar is fixed */
+}
+
+/* Word Buttons */
+
+/* Audio Player */
+.audio-player {
+    margin-top: 20px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+/* Floating Magical Creature */
+.magical-creature {
+    position: absolute;
+    bottom: 50px;
+    right: 20px;
+    width: 150px;
+    animation: float 3s infinite ease-in-out;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
