@@ -45,11 +45,12 @@ def get_sounds():
         sound["audio_path"] = f"http://127.0.0.1:5000/audio/{filename}"
     
     return jsonify(sounds)
+
 @app.route('/get_word_sounds', methods=['GET'])
 def get_word_sounds():
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT word, audio_path FROM word_sounds")  # Assuming table name is 'word_sounds'
+    cursor.execute("SELECT letter, audio_path FROM word_sounds")  # Assuming table name is 'word_sounds'
     word_sounds = cursor.fetchall()
     conn.close()
     
@@ -59,7 +60,6 @@ def get_word_sounds():
     
     return jsonify(word_sounds)
 
-# User Registration
 @app.route('/register', methods=['POST'])
 def register():
     data = request.json
@@ -67,6 +67,8 @@ def register():
     cursor = conn.cursor()
 
     try:
+        print("Received Data:", data)  # Debugging log
+
         cursor.execute("""
             INSERT INTO reg (child_name, age, grade, parent_name, email_id, mobile_no, username, password)
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
@@ -74,22 +76,31 @@ def register():
               data['email_id'], data['mobile_no'], data['username'], data['password']))
 
         learner_id = cursor.lastrowid
+
         cursor.execute("""
             INSERT INTO letter_sound_login (learner_id, username, password, session_id, difficulty_level)
             VALUES (%s, %s, %s, 0, 'easy1')
         """, (learner_id, data['username'], data['password']))
+
         cursor.execute("""
             INSERT INTO word_sound_login (learner_id, username, password, session_id, difficulty_level)
             VALUES (%s, %s, %s, 0, 'easy1')
         """, (learner_id, data['username'], data['password']))
+
         conn.commit()
+        print("Registration successful")  # Debugging log
+
         return jsonify({"message": "Registration successful", "learner_id": learner_id})
 
     except Exception as e:
+        print("Error:", str(e))  # Log the error
+        import traceback
+        print(traceback.format_exc())  # Print full traceback
         return jsonify({"error": str(e)}), 500
 
     finally:
         conn.close()
+
 
 # User Login
 @app.route('/login', methods=['POST'])
@@ -216,8 +227,8 @@ def store_metrics():
         )
         
         # Print prediction in console (as requested)
-        print(f"Predicted Next Difficulty Level: {predicted_difficulty}")
-        print(label_encoder.classes_)  
+        #print(f"Predicted Next Difficulty Level: {predicted_difficulty}")
+        #print(label_encoder.classes_)  
         
         return jsonify({
             "message": "Metrics stored successfully!",
