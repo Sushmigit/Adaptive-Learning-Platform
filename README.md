@@ -1,1 +1,1 @@
-# Adaptive-Leraning-Platform
+# Adaptive-Learning-Platform
